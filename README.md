@@ -36,5 +36,5 @@ Kindly install the following packages:
  In case shinyapps.io is down, please mail @ vipul8t@gmail.com
 
 ## Demonstration
-![alt text](https://github.com/vipultagai/appsilon_shiny_developer/blob/master/demo.PNG)
+![alt text](https://github.com/vipultagai/appsilon-shiny-developer/blob/master/demo.PNG)
 
