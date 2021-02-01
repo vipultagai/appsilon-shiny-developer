@@ -6,8 +6,7 @@ Repo for Shiny Developer @ Appsilon task.
  NOTE: The task is imlemented as a single module in a shiny app.
 
 ## Directory Structure & Files
-
-Markup : - 1. server.R: shinyserver file.
+         - 1. server.R: shinyserver file.
          - 2. ui.R: shinyui file.
          - 3. global.R: to load libraries & source modules.
          - 4. www/ui.css: CSS file for styling.
