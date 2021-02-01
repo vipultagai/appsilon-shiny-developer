@@ -1,0 +1,26 @@
+{
+    "id": "42FE242A",
+    "path": "F:/Projects/shiny_developer_appsilon/server.R",
+    "project_path": "server.R",
+    "type": "r_source",
+    "hash": "4260593670",
+    "contents": "",
+    "dirty": false,
+    "created": 1612109907605.0,
+    "source_on_save": false,
+    "relative_order": 5,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "7,0",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1612133699,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1612133699874,
+    "read_only": false,
+    "read_only_alternatives": []
+}

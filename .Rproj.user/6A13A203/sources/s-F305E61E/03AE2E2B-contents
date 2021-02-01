@@ -1,0 +1,31 @@
+
+name_input_server <- function(id) {
+  moduleServer(id,
+               function(input, output, session) {
+                 observeEvent(input$type,{
+                   updateSelectInput(session = getDefaultReactiveDomain(),
+                                     "name",
+                                     label = "Name",
+                                     choices = get_ship_names(input$type),
+                                     selected = NULL
+                   )   
+                 })
+                              
+               })
+}
+
+
+type_input_server <- function(id) {
+  moduleServer(id,
+               function(input, output, session) {
+
+                   updateSelectInput(session = getDefaultReactiveDomain(),
+                                     "name",
+                                     label = "Name",
+                                     choices = get_ship_type(),
+                                     selected = NULL
+                   )   
+                 })
+                 
+               
+}

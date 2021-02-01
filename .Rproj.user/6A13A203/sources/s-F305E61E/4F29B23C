@@ -1,0 +1,26 @@
+{
+    "id": "4F29B23C",
+    "path": "F:/Projects/shiny_developer_appsilon/src/distance_module_ui.R",
+    "project_path": "src/distance_module_ui.R",
+    "type": "r_source",
+    "hash": "1630363367",
+    "contents": "",
+    "dirty": false,
+    "created": 1612122296078.0,
+    "source_on_save": false,
+    "relative_order": 6,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "49,0",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1612133670,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1612133670321,
+    "read_only": false,
+    "read_only_alternatives": []
+}

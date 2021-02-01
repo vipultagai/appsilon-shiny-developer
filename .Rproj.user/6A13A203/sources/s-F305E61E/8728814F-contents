@@ -1,0 +1,54 @@
+
+
+
+plot_output_ui <- function(id,small =TRUE) {
+  ns <- NS(id)
+  if(small){
+    height = "220px"
+    class = "plot_output_small"
+  }
+  
+  else{
+    height = "380px"
+    class = "plot_output_large"
+  }
+    
+  tags$div(
+    class = class,
+    id = ns("container"),
+    tags$div(
+      class = "name",
+      tags$div(style = "width:70%;float:left", textOutput(ns("title"))),
+      actionButton('close',
+                   NULL,
+                   icon = icon("chevron-down"), 
+                   style ='float:right;margin:0px;border:none;'),
+      actionButton('expand',
+                   NULL,
+                   icon = icon("expand-arrows-alt"), 
+                   style ='float:right;margin:0px;border:none;'),
+      actionButton('refresh',
+                   NULL,
+                   icon = icon("refresh"), 
+                   style ='float:right;margin:0px;border:none;')
+      
+    ),
+    tags$div(class = "plot_container",
+             if(small==FALSE){leafletOutput(ns("map"),height = height)}
+             else{plotlyOutput(ns("plot"), height = height,inline = TRUE)}   
+               ),
+    tags$div(
+      class = "plot_output_options",
+      
+      selectInput(
+        ns("range"),
+        label = NULL,
+        width = 100,
+        choices = c("1 Month", "6 Months", "1 Year")
+      ),
+      actionButton(ns("print"), label = "", icon = icon("print")),
+      actionButton(ns("export"), label = "", icon = icon("save"))
+    ),
+    
+  )
+}

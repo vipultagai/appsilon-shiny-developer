@@ -1,0 +1,9 @@
+# Function to generate kpi indicator.
+
+select_input_ui <- function(id,label=NULL) {
+  ns <- NS(id)
+  tags$div(
+  selectInput(ns("type"), label,choices = ""),
+  selectInput(ns("name"), label,choices = "")
+  )
+  }

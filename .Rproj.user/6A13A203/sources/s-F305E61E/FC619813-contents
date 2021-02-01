@@ -1,0 +1,11 @@
+
+map_output_Server <- function(id,name,type=NULL) {
+  moduleServer(id,
+               function(input, output, session) {
+                 
+                 
+                 
+                 
+              
+               })
+}

@@ -1,0 +1,15 @@
+
+
+plot_output_Server <- function(id,name,type=NULL) {
+  moduleServer(id,
+               function(input, output, session) {
+                 output$title <- renderText(name)
+                 if(type=="map"){
+                   output$map<-renderLeaflet(map)
+                 }
+                 if(type=="stacked_bar"){
+                   output$plot <- renderPlotly(fig)
+                 }
+
+               })
+}

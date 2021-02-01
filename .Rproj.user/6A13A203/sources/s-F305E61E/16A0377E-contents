@@ -1,0 +1,20 @@
+
+map_output_Server <- function(id,name,type=NULL) {
+  moduleServer(id,
+               function(input, output, session) {
+                 
+                 output$title <- renderText(name)
+                 observe(name,{
+                   
+                   print("map server called")
+                   print(name)
+                   c<-name
+                   map <- make_map(c)
+                   
+                   output$map <- renderLeaflet(map)
+                 })
+                 
+                 
+              
+               })
+}

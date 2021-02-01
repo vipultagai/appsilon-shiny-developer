@@ -1,0 +1,5 @@
+# Function to generate kpi indicator.
+
+select_input_ui <- function(id,label=NULL) {
+  selectInput(id, label,choices = "")
+  }

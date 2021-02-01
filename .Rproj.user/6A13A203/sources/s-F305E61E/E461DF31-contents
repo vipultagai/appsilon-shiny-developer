@@ -1,0 +1,20 @@
+
+description_output_ui <- function(id){
+  verbatimTextOutput(id)
+}
+
+
+plot_output_ui <- function(id,small =TRUE) {
+  ns <- NS(id)
+  tags$div(
+    class = "plot_output_large",
+    id = ns("container"),
+    tags$div(
+      class = "name",
+      tags$div(style = "width:70%;float:left", textOutput(ns("title")))),
+    
+    tags$div(class = "plot_container",
+             leafletOutput(ns("map"),height = 400)
+    )
+  )
+}

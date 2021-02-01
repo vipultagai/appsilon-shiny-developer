@@ -1,0 +1,62 @@
+library(readr)
+library(dplyr)
+library(leaflet)
+library(geosphere)
+
+ships <- read_csv("src/ships.csv")
+
+get_ship_type<-function(){
+  return(as.list(distinct(ships,ship_type)))
+}
+
+get_ship_names<-function(type){
+  subset(ships,ship_type==type,select = 'SHIPNAME')%>%
+    as.data.frame()%>%
+    distinct(SHIPNAME)%>%
+    return()
+}
+
+
+get_distance<-function(lt1,lt2,ln1,ln2){
+  dist <- list()
+  for(i in 1:length(lt1)){
+    dist[i] <- distHaversine(c(ln1[i],lt1[i]),c(ln2[i],lt2[i]),r=6357000)
+    }
+  return(unlist(dist))
+}
+
+find_observations <- function(ship_name){
+  obs <- filter(ships,SHIPNAME==ship_name)%>%arrange(DATETIME)
+  obs$LAT2 = lead(obs$LAT)
+  obs$LON2 = lead(obs$LON)
+  obs$dist = get_distance(obs$LAT,obs$LAT2,obs$LON,obs$LON2)
+  mx <- max(obs$dist,na.rm = TRUE)
+  dp<-obs[which(obs$dist == mx),]
+  if(length(dp$LAT)>1){
+    return(dp[which(dp$DATETIME==min(dp$DATETIME))])
+  }
+  else{
+  return(dp)
+  }
+}
+
+
+make_map<-function(observation,data){
+  ship_name<-observation$SHIPNAME
+  obs <- filter(ships,SHIPNAME==ship_name)%>%arrange(DATETIME)
+  
+  m <- leaflet() %>%
+    addTiles() %>%  
+    addMarkers(lng = karoli$LON, lat=karoli$LAT, popup="Observation 1")%>%
+    addMarkers(lng = karoli$LON2, lat=karoli$LAT2, popup="Point 2")%>%
+    addPolylines(lng = obs$LON,lat =obs$LAT,popup = paste0(karoli$SHIPNAME,"Ship Route"))%>%
+    addPolylines(lng = c(karoli$LON,karoli$LON2),
+                 lat =c(karoli$LAT,karoli$LAT2),
+                 popup = paste0("Observation with maximum distance.Distance = ",karoli$dist),
+                 color = "green"  )%>%
+    return()
+}
+
+
+
+

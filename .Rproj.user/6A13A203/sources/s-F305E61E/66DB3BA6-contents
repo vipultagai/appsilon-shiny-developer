@@ -1,0 +1,9 @@
+
+
+map_output_ui <- function(id){
+  leafletOutput(id,width = "100%",height = 400)
+}
+
+description_output_ui <- function(id){
+  verbatimTextOutput(id)
+}

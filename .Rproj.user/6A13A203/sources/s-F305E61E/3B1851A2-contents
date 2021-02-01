@@ -1,0 +1,59 @@
+library(ggplot2)
+library(plotly)
+library(dplyr)
+
+
+fig <- diamonds
+fig <- fig %>% count(cut, clarity)
+fig <- fig %>% plot_ly(x = ~cut, y = ~n, color = ~clarity,type = 'bar')%>% 
+  layout(plot_bgcolor='#F8F8F8') %>% 
+  layout(paper_bgcolor='#F8F8F8') %>%
+  layout(xaxis = list(title = ""))%>%
+  layout(yaxis = list(title = ""))
+
+countries <- geojsonio::geojson_read("scr/countries.geojson", what = "sp")
+
+pal <- colorNumeric("magma", NULL)
+x <- data.frame(country = countries$ADMIN,value = runif(255,min =0 ,max = 100))
+
+map<-leaflet(countries,options = leafletOptions(minZoom = 1, maxZoom = 10)) %>%
+  addTiles() %>%
+  addPolygons(stroke = FALSE, smoothFactor = 0.3, fillOpacity = 1,
+              fillColor = ~pal(log10(x$value)),
+              label = ~paste0(ADMIN, ": ", formatC(x$value, big.mark = ",")))
+
+  Country <-
+    c(rep("India" , 3) ,
+      rep("Poland" , 3) ,
+      rep("Germany" , 3)) 
+  Product <- rep(c("Nail" , "Hose" , "Pipe") , 3)
+  Revenue <- abs(rnorm(9 , 0 , 15))
+  data <- data.frame(Product, Country, Revenue)
+  
+  summary <-
+    ggplot(data, aes(fill = Product, y = Revenue, x = Country)) +
+    geom_bar(
+      position = "stack",
+      stat = "identity",
+      width = 0.4,
+      alpha = 0.5
+    ) +
+    coord_flip() +
+    theme_bw() +
+    theme(
+      panel.border = element_blank(),
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(),
+      panel.grid.major.x = element_line(colour = "grey"),
+      panel.grid.minor.x = element_line(colour = "grey"),
+      axis.title.x.bottom = element_blank(),
+      panel.background = element_rect(fill = '#F8F8F8'),
+      legend.background = element_rect(fill = '#F8F8F8'),
+      plot.background = element_rect(fill = '#F8F8F8')) +
+    xlab("")
+  
+  summary <- ggplotly(summary)%>%layout(plot_bgcolor='#F8F8F8') %>% 
+    layout(paper_bgcolor='#F8F8F8') %>%
+    layout(xaxis = list(title = ""))%>%
+    layout(yaxis = list(title = ""))%>%
+    hide_legend()
