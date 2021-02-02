@@ -3,19 +3,26 @@ Repo for Shiny Developer @ Appsilon task.
 
   Demo Link: https://vipultagai.shinyapps.io/shiny_developer_appsilon/
 
- NOTE: The task is imlemented as a single module in a shiny app.
+ NOTE: The task is imlpemented as a single module in a shiny app.
 
 # Directory Structure & Files
          - 1. server.R: shinyserver file.
+         
          - 2. ui.R: shinyui file.
+         
          - 3. global.R: to load libraries & source modules.
+         
          - 4. www/ui.css: CSS file for styling.
+         
          - 5. src/distance_module_ui.R : 
          Contains function to generate the required UI for the task module.
+         
          - 6. src/distance_module_server.R : 
          Server logic for task module. (update select type, select name, render map & description. )
+         
          - 7. src/ships.csv : 
          file without unnecessary columns (contains only 5 columns - SHIPTYPE, SHIPNAME, LAT, LON, DATETIME) (size: 176 MB) 
+         
          - 8. src/utilities.R : Utility functions for calculations:
          
             8.1. get_ship_types() - 
@@ -31,7 +38,9 @@ Repo for Shiny Developer @ Appsilon task.
             returns: dataframe with all observations belonging to a ship (ship_name).
             
             8.5. find_observations(filtered_data, type = max / total) - 
-            returns:  if type = total -> the total distance covered by a ship &  if type = max -> the observation with longest distance between two consecutive observations.  
+            returns:  if type = total -> the total distance covered by a ship &  
+                      if type = max -> the observation with longest distance between two consecutive observations.  
+                      
             8.6. make_map(observation, filtered_data) - 
             returns: leaflet map object with marked coordinates for problem statement & route of the ship.  
             
