@@ -4,16 +4,21 @@
 
 library(shiny)
 library(shiny.semantic)
-library(readr)
 library(dplyr)
 library(leaflet)
 library(geosphere)
+library(data.table)
 
 #Load Data File.
-ships <- read_csv("src/ships.csv")
+ships <- fread("src/ships.csv")
 
 #Load dependencies
-
 source('src/utility.R')
 source('src/distance_module_ui.R')
 source('src/distance_module_server.R')
+
+system.time(fread("src/ships.csv"))
+system.time(read.csv("src/ships.csv"))
+
+
+
