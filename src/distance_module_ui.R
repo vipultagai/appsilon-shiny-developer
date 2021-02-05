@@ -16,7 +16,8 @@ distance_module_ui <- function(id) {
     tags$div(class = "sidebar",
              tags$div(
                selectInput(ns("type"), "SHIP TYPE", choices = ""),
-               selectInput(ns("name"), "SHIP NAME", choices = "")
+               selectInput(ns("name"), "SHIP NAME", choices = ""),
+               
              )),
     
     #add Map output

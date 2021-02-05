@@ -3,12 +3,24 @@
 distance_module_server <- function(id) {
   moduleServer(id,
                function(input, output, session) {
+                 
+                 toast(
+                   "Radius of earth is assumed to be 6,357,000 metres for distance calculation",
+                   title = "Please Note",
+                   action = NULL,
+                   duration = 5,
+                   id = "notification",
+                   class = "",
+                   toast_tags = NULL,
+                   session = shiny::getDefaultReactiveDomain()
+                 )
+                 
                  #update choices for ship type
                  updateSelectInput(
                    session = getDefaultReactiveDomain(),
                    "type",
                    label = "Type",
-                   choices = get_ship_type(),
+                   choices = get_ship_type()$ship_type,
                    selected = NULL
                  )
                  #update choices for ship name according to ship type

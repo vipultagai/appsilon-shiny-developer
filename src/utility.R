@@ -1,17 +1,23 @@
 #utility functions for calculations, etc.
 
-get_ship_type <- function() {
+get_ship_type_2 <- function() {
   return(as.list(distinct(ships, ship_type))$ship_type)
 }
-
+get_ship_type<- function(){
+  return(unique(ships[j='ship_type']))
+}
 #getting ship names based on ship type.
 
-get_ship_names <- function(type) {
+get_ship_names_2 <- function(type) {
   subset(ships, ship_type == type, select = 'SHIPNAME') %>%
     as.data.frame() %>%
     distinct(SHIPNAME) %>%
     as.list() %>%
     return()
+}
+
+get_ship_names <-function(type){
+  return(unique(ships[j="SHIPNAME",ship_type==type]))
 }
 
 #distance calculation from coordinates on spherical objects.
@@ -26,8 +32,14 @@ get_distance <- function(lt1, lt2, ln1, ln2) {
   return(unlist(dist))
 }
 
-filter_data <- function(ship_name) {
+
+
+filter_data_2 <- function(ship_name) {
   return(filter(ships, SHIPNAME == ship_name) %>% arrange(DATETIME))
+}
+
+filter_data <- function(ship_name){
+  return(arrange(ships[SHIPNAME==ship_name],DATETIME))
 }
 
 # find observations from ship name and return either total distance
@@ -54,6 +66,9 @@ find_observations <- function(obs, type = "max") {
   }
 }
 
+
+
+
 #Logic for finding observation with maximum distance between two consecutive observations.
 
 make_map <- function(result, obs) {
@@ -61,10 +76,10 @@ make_map <- function(result, obs) {
     addTiles() %>%
     addMarkers(lng = result$LON,
                lat = result$LAT,
-               popup = "Observation 1") %>%
+               popup = paste0(result$LON,result$LAT) ) %>%
     addMarkers(lng = result$LON2,
                lat = result$LAT2,
-               popup = "Observation 2") %>%
+               popup = paste0(result$LON2,result$LAT2)) %>%
     addPolylines(
       lng = obs$LON,
       lat = obs$LAT,
