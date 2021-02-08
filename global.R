@@ -17,8 +17,7 @@ source('src/utility.R')
 source('src/distance_module_ui.R')
 source('src/distance_module_server.R')
 
-system.time(fread("src/ships.csv"))
-system.time(read.csv("src/ships.csv"))
+
 
 
 
