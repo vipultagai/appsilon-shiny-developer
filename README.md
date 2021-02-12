@@ -47,7 +47,7 @@ Repo for Shiny Developer @ Appsilon task.
             8.7. make_description(ship_type) - 
             returns: A string with the description of the observations for the problem statement.
   
-Use renv::activate() after pull.
+Use renv::restore() after pull.
 
 Kindly install the following packages:
 1. shiny
